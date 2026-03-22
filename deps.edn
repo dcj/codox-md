@@ -1,0 +1,20 @@
+{:paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.12.3"}
+        ;; tools.build is needed by codox.md.build for create-basis
+        io.github.clojure/tools.build {:git/tag "v0.10.10" :git/sha "deedd62"}}
+
+ :aliases {:build {:deps {io.github.clojure/tools.build
+                          {:git/tag "v0.10.10" :git/sha "deedd62"}
+                          slipset/deps-deploy {:mvn/version "0.2.2"}}
+                   :ns-default build}
+
+           :test {:extra-paths ["test"]
+                  :extra-deps {lambdaisland/kaocha {:mvn/version "1.91.1392"}
+                               codox/codox {:mvn/version "0.10.8"}}
+                  :main-opts ["-m" "kaocha.runner" "--config-file" "tests.edn"]}
+
+           :nrepl {:extra-paths ["dev" "test"]
+                   :extra-deps {nrepl/nrepl {:mvn/version "1.6.0"}
+                                codox/codox {:mvn/version "0.10.8"}}
+                   :jvm-opts ["-Djdk.attach.allowAttachSelf"]
+                   :main-opts ["-m" "nrepl.cmdline" "--port" "7891"]}}}

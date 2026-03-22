@@ -1,4 +1,0 @@
--m
-kaocha.runner
---config-file
-tests.edn

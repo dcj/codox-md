@@ -4,8 +4,8 @@
             [codox.md.build :as doc]
             [deps-deploy.deps-deploy :as dd]))
 
-(def lib 'com.dcj/codox-md)
-(def version "0.1.0-SNAPSHOT")
+(def lib 'io.github.dcj/codox-md)
+(def version "0.1.0")
 (def class-dir "target/classes")
 
 (defn test "Run all the tests." [opts]
@@ -24,7 +24,10 @@
          :jar-file (format "target/%s-%s.jar" (name lib) version)
          :description "Codox writer that generates Markdown documentation for embedding in JARs"
          :url "https://github.com/dcj/codox-md"
-         :licenses [{:name "MIT" :url "https://opensource.org/licenses/MIT"}]
+         :pom-data [[:licenses
+                     [:license
+                      [:name "MIT"]
+                      [:url "https://opensource.org/licenses/MIT"]]]]
          :scm {:tag (str "v" version)
                :url "https://github.com/dcj/codox-md"}
          :basis (b/create-basis {})

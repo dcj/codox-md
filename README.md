@@ -1,5 +1,7 @@
 # codox-md
 
+[![Clojars Project](https://img.shields.io/clojars/v/io.github.dcj/codox-md.svg)](https://clojars.org/io.github.dcj/codox-md)
+
 A [Codox](https://github.com/weavejester/codox) writer that generates **Markdown** documentation instead of HTML, designed for embedding API docs in Clojure library JARs as classpath resources.
 
 ## Why
@@ -22,7 +24,7 @@ Clojure libraries ship source in JARs, but not documentation. `codox-md` adds Ma
 :build {:deps {io.github.clojure/tools.build
                {:git/tag "v0.10.10" :git/sha "deedd62"}
                slipset/deps-deploy {:mvn/version "0.2.2"}
-               com.dcj/codox-md {:mvn/version "0.1.0-SNAPSHOT"}}
+               io.github.dcj/codox-md {:mvn/version "0.1.0"}}
         :ns-default build}
 ```
 
@@ -36,7 +38,7 @@ Clojure libraries ship source in JARs, but not documentation. `codox-md` adds Ma
             [deps-deploy.deps-deploy :as dd]))
 
 (def lib 'com.example/my-lib)
-(def version "0.1.0-SNAPSHOT")
+(def version "0.1.0")
 (def class-dir "target/classes")
 
 (defn ci [opts]

@@ -4,7 +4,7 @@
             [codox.md.build :as doc]
             [deps-deploy.deps-deploy :as dd]))
 
-(def lib 'io.github.dcj/codox-md)
+(def lib 'com.dcj/codox-md)
 (def version "0.1.0")
 (def class-dir "target/classes")
 

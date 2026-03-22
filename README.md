@@ -111,4 +111,4 @@ The `:source-uri` option supports these placeholders:
 
 Copyright (C) 2026 Clark Communications Corporation
 
-MIT License
+[MIT License](LICENSE)

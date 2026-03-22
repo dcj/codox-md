@@ -120,7 +120,7 @@ Create `~/.claude/commands/deps-docs.md` with these capabilities:
 
 The skill uses the clojure-mcp nREPL eval tool to call `doc.browse` functions. When Claude needs to understand a dependency's API, it can pull the docs directly instead of guessing. This is especially valuable for private or niche libraries that aren't in the model's training data.
 
-See the [deps-docs skill source](https://gist.github.com/dcj/deps-docs-skill) for the full implementation.
+See the [deps-docs skill source](https://gist.github.com/dcj/7fda34341c40ac71d7e08bcce7f82aac) for the full implementation.
 
 ## Related projects
 

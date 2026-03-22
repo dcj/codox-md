@@ -104,6 +104,24 @@ The `:source-uri` option supports these placeholders:
 - Clojure 1.12+ (uses `DynamicClassLoader` for in-process dep loading)
 - [Codox](https://github.com/weavejester/codox) 0.10.8 (loaded dynamically at build time, not a compile-time dependency)
 
+## AI assistant integration (Claude Code)
+
+Libraries with embedded docs become queryable by AI coding assistants. With [Claude Code](https://claude.com/claude-code) and [clojure-mcp](https://github.com/nicpjocson/clojure-mcp), a `/deps-docs` skill lets Claude read your dependency docs at the REPL instead of relying on training data or web search.
+
+### Setup
+
+Create `~/.claude/commands/deps-docs.md` with these capabilities:
+
+- `/deps-docs` — list libraries with embedded docs on the classpath
+- `/deps-docs some.namespace` — fetch API docs for a namespace
+- `/deps-docs group/artifact` — list documented namespaces in a library
+- `/deps-docs search query` — full-text search across all docs
+- `/deps-docs setup` — add clj-doc-browse to a project's `:nrepl` alias and CLAUDE.md
+
+The skill uses the clojure-mcp nREPL eval tool to call `doc.browse` functions. When Claude needs to understand a dependency's API, it can pull the docs directly instead of guessing. This is especially valuable for private or niche libraries that aren't in the model's training data.
+
+See the [deps-docs skill source](https://gist.github.com/dcj/deps-docs-skill) for the full implementation.
+
 ## Related projects
 
 - [clj-doc-browse](https://github.com/dcj/clj-doc-browse) — Runtime classpath scanner that discovers and reads these embedded docs

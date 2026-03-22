@@ -1,9 +1,10 @@
 (ns build
   (:refer-clojure :exclude [test])
   (:require [clojure.tools.build.api :as b]
+            [codox.md.build :as doc]
             [deps-deploy.deps-deploy :as dd]))
 
-(def lib 'energy.grid-coordination/codox-md)
+(def lib 'com.dcj/codox-md)
 (def version "0.1.0-SNAPSHOT")
 (def class-dir "target/classes")
 
@@ -22,10 +23,10 @@
          :lib lib :version version
          :jar-file (format "target/%s-%s.jar" (name lib) version)
          :description "Codox writer that generates Markdown documentation for embedding in JARs"
-         :url "https://grid-coordination.energy"
+         :url "https://github.com/dcj/codox-md"
          :licenses [{:name "MIT" :url "https://opensource.org/licenses/MIT"}]
          :scm {:tag (str "v" version)
-               :url "https://github.com/grid-coordination/codox-md"}
+               :url "https://github.com/dcj/codox-md"}
          :basis (b/create-basis {})
          :class-dir class-dir
          :target "target"
@@ -37,8 +38,14 @@
   (let [opts (jar-opts opts)]
     (println "\nWriting pom.xml...")
     (b/write-pom opts)
+    (println "\nGenerating API docs...")
+    (doc/generate-docs {:lib lib :version version
+                        :description (:description opts)
+                        :source-uri (str (get-in opts [:scm :url])
+                                         "/blob/{git-commit}/{filepath}#L{line}")})
     (println "\nCopying source...")
-    (b/copy-dir {:src-dirs ["resources" "src"] :target-dir class-dir})
+    (b/copy-dir {:src-dirs ["resources" "src" "target/doc-resources"]
+                 :target-dir class-dir})
     (println "\nBuilding JAR...")
     (b/jar opts))
   opts)

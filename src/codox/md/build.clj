@@ -43,7 +43,7 @@
    Markdown writer.
 
    Opts:
-     :lib          - qualified symbol, e.g. 'energy.grid-coordination/clj-oa3
+     :lib          - qualified symbol, e.g. 'com.dcj/clj-oa3
      :version      - version string
      :description  - library description (optional)
      :source-paths - vector of source dirs (default [\"src\"])
